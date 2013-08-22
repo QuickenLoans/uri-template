@@ -74,7 +74,7 @@ echo $expander->lastError() . "\n"; // "Unclosed expression at offset 4: /foo{ba
 
 // error with template in UriTemplate
 try {
-    $tpl = new UriTemplate($badTpl);
+    $tpl = new UriTemplate($badTpl, new Expander);
 } catch (Exception $e) {
     echo $e->getMessage() . "\n"; // outputs "Unclosed expression at offset 4: /foo{ba"
 }
