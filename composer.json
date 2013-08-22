@@ -1,0 +1,34 @@
+{
+    "name": "ql/uri-template",
+    "description": "An implementation of RFC 6570 level 4",
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "phpunit/php-invoker": "*"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Matt Nagi",
+            "email": "mattnagi@quickenloans.com",
+            "role": "Tech Lead",
+            "homepage": "http://rwprofile/MySite/Public.aspx?accountname=MI%5cMNagi"
+        }
+    ],
+    "support": {
+        "email": "mattnagi@quickenloans.com",
+        "issues": "http://git/mnagi/ql-uri-template/issues",
+        "source": "http://git/mnagi/ql-uri-template"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "ext-mbstring": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "QL\\UriTemplate": "src"
+        }
+    },
+    "archive": {
+        "exclude": ["/bin", "/tests", "/phpunit.xml.dist"]
+    }
+}

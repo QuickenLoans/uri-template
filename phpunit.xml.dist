@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<phpunit
+    backupGlobals="false"
+    backupStaticAttributes="false"
+    cacheTokens="true"
+    colors="false"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    forceCoversAnnotation="true"
+    mapTestClassNameToCoveredClassName="false"
+    processIsolation="false"
+    stopOnError="false"
+    stopOnFailure="false"
+    stopOnIncomplete="false"
+    stopOnSkipped="false"
+    strict="false"
+    timeoutForSmallTests="2"
+    verbose="true">
+
+  <logging>
+    <log type="coverage-html" target="build/coverage" charset="UTF-8" highlight="true" lowUpperBound="50" highLowerBound="80"/>
+    <log type="coverage-clover" target="build/clover.xml"/>
+    <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+    <log type="junit" target="build/junit.xml" logIncompleteSkipped="false"/>
+    <log type="testdox-html" target="build/testdox.html"/>
+    <log type="testdox-text" target="build/testdox.txt"/>
+  </logging>
+
+
+  <testsuites>
+    <testsuite name="URI Template Tests">
+      <directory>tests/QL</directory>
+    </testsuite>
+  </testsuites>
+
+  <filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+      <directory>src/</directory>
+    </whitelist>
+  </filter>
+
+  <php>
+    <ini name="display_errors" value="On" />
+    <ini name="error_reporting" value="32767" />
+    <ini name="memory_limit" value="1G" />
+  </php>
+</phpunit>
