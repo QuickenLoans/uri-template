@@ -1,8 +1,6 @@
 <?php
 /**
- * @copyright ©2005—2013 Quicken Loans Inc. All rights reserved. Trade Secret,
- *    Confidential and Proprietary. Any dissemination outside of Quicken Loans
- *    is strictly prohibited.
+ * @copyright ©2005—2013 Quicken Loans Inc. All rights reserved.
  */
 
 namespace QL\UriTemplate;
@@ -18,8 +16,7 @@ class UriTemplateTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructingBadUriTemplateThrowsException()
     {
-        $expander = new Expander;
-        new UriTemplate('/foo/{bar', $expander);
+        new UriTemplate('/foo/{bar');
     }
 
     /**

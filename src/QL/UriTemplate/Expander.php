@@ -1,8 +1,6 @@
 <?php
 /**
- * @copyright ©2005—2013 Quicken Loans Inc. All rights reserved. Trade Secret,
- *    Confidential and Proprietary. Any dissemination outside of Quicken Loans
- *    is strictly prohibited.
+ * @copyright ©2013 Quicken Loans Inc. All rights reserved.
  */
 
 namespace QL\UriTemplate;
@@ -10,7 +8,8 @@ namespace QL\UriTemplate;
 /**
  * Implements RFC 6570 Level 4
  *
- * This way lies madness.
+ * It is done without regular expression. This way lies madness! The code is
+ * not very neat, but it is tested extremely well.
  *
  * This only expands URI templates in the UTF-8 character set. Templates in any
  * other character set will immediately error and return.
@@ -36,11 +35,15 @@ class Expander
     ];
 
     /**
+     * Error from last invokation
+     *
      * @var string|null
      */
     private $error;
 
     /**
+     * Returns the error (if any) from the last expansion
+     *
      * @return string|null
      */
     public function lastError()
@@ -55,6 +58,8 @@ class Expander
      */
     public function __invoke($tpl, array $variables)
     {
+        $this->error = null;
+
         if (!mb_check_encoding($tpl, self::ENC)) {
             $this->error = 'Input template not valid UTF-8';
             return $tpl;
@@ -127,6 +132,15 @@ class Expander
         return $result;
     }
 
+    /**
+     * Expands a single expression
+     *
+     * @param string $expr The expression string minus the operator
+     * @param string|null $op The operator (or null if no operator)
+     * @param array $variables The varibles to expand with
+     * @return string|boolean Returns the expanded string or false if there was
+     *    an error with the expansion format.
+     */
     private function expand($expr, $op, array $variables)
     {
         $result = '';
@@ -230,14 +244,22 @@ class Expander
                 }
                 $result .= implode(',', $value);
             } else {
-                $result .= $this->expandExplodeMod($op, $spec[0], $value, $variables);
+                $result .= $this->expandExplodeMod($op, $spec[0], $value);
             }
         }
 
         return $result;
     }
 
-    private function expandExplodeMod($op, $varname, array $varvalue, array $variables)
+    /**
+     * Does the work of the explode modifier
+     *
+     * @param string|null $op
+     * @param string $varname
+     * @param array $varvalue
+     * @return string
+     */
+    private function expandExplodeMod($op, $varname, array $varvalue)
     {
         $result = '';
         $first = true;
@@ -284,6 +306,17 @@ class Expander
         return $result;
     }
 
+    /**
+     * This method decides if the given array is a 'list' or an 'associative array'
+     *
+     * The RFC defines variable data to be either a string, a list or an
+     * associative array of name, value pairs. Since PHP's array construct can
+     * be either a list OR an associative array, this method does the
+     * differentiation.
+     *
+     * @param array $arr
+     * @return boolean
+     */
     private function isNumericArray(array $arr)
     {
         $numeric = true;
@@ -298,6 +331,12 @@ class Expander
         return $numeric;
     }
 
+    /**
+     * Does a rawurlencode() on the string skipping the RFC's 'reserved' characters.
+     *
+     * @param string $ipt
+     * @return string
+     */
     private function encodeNonReservedCharaceters($ipt)
     {
         $result = '';
@@ -332,6 +371,14 @@ class Expander
         return $result;
     }
 
+    /** 
+     * Given a full expression (all text between { and }) return the operator.
+     *
+     * @param string $expr
+     * @param int $origPos
+     * @param string $tpl
+     * @return bool|null
+     */
     private function extractOperator($expr, $origPos, $tpl)
     {
         $op = $expr[0];
@@ -355,6 +402,10 @@ class Expander
         }
     }
 
+    /**
+     * @param string $chr
+     * @return bool
+     */
     private function isValidOperator($chr)
     {
         if (
@@ -372,6 +423,12 @@ class Expander
         return false;
     }
 
+    /**
+     * @param $tpl
+     * @param $i
+     * @param $error
+     * @return bool|int
+     */
     private function scanLengthModifier($tpl, &$i, &$error)
     {
         $mod = substr($tpl, $i + 1);
@@ -448,6 +505,12 @@ class Expander
         return true;
     }
 
+    /**
+     * @param $tpl
+     * @param $i
+     * @param $error
+     * @return string
+     */
     private function scanExpression($tpl, &$i, &$error)
     {
         $expression = '';
@@ -468,6 +531,10 @@ class Expander
         return $expression;
     }
 
+    /**
+     * @param $chr
+     * @return bool|null
+     */
     private function isValidVarChr($chr)
     {
         $num = ord($chr);
@@ -488,6 +555,11 @@ class Expander
         return false;
     }
 
+    /**
+     * @param array $variables
+     * @param bool $arrayAllowed
+     * @return null|string
+     */
     private function checkVariableStructure(array $variables, $arrayAllowed = true)
     {
         foreach ($variables as $val) {

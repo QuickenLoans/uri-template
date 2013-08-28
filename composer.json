@@ -5,20 +5,18 @@
         "phpunit/phpunit": "*",
         "phpunit/php-invoker": "*"
     },
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "Matt Nagi",
-            "email": "mattnagi@quickenloans.com",
-            "role": "Tech Lead",
-            "homepage": "http://rwprofile/MySite/Public.aspx?accountname=MI%5cMNagi"
+            "email": "mattnagi@quickenloans.com"
         }
     ],
-    "homepage": "http://git/mnagi/ql-uri-template",
+    "homepage": "https://github.com/QuickenLoans/uri-template",
     "support": {
         "email": "mattnagi@quickenloans.com",
-        "issues": "http://git/mnagi/ql-uri-template/issues",
-        "source": "http://git/mnagi/ql-uri-template"
+        "issues": "https://github.com/QuickenLoans/uri-template/issues",
+        "source": "https://github.com/QuickenLoans/uri-template"
     },
     "require": {
         "php": ">=5.4.0",

@@ -1,13 +1,18 @@
 <?php
 /**
- * @copyright ©2005—2013 Quicken Loans Inc. All rights reserved. Trade Secret,
- *    Confidential and Proprietary. Any dissemination outside of Quicken Loans
- *    is strictly prohibited.
+ * @copyright ©2013 Quicken Loans Inc. All rights reserved.
  */
 
 namespace QL\UriTemplate;
 
 /**
+ * An instance of this class is a valid URI Template
+ *
+ * The idea of this class is to provide a 'strict' wrapper around the Expander
+ * class that does the real expansion work. It mainly will check if a given
+ * string is a valid URI Template on construction so if you get an instance of
+ * this class you can gaurentee the format of the template is valid.
+ *
  * @api
  */
 class UriTemplate
@@ -24,11 +29,15 @@ class UriTemplate
 
     /**
      * @param string $tpl
-     * @param Expander $expander
+     * @param Expander|null $expander
      * @throws Exception
      */
-    public function __construct($tpl, Expander $expander)
+    public function __construct($tpl, Expander $expander = null)
     {
+        if (is_null($expander)) {
+            $expander = new Expander;
+        }
+
         $expander($tpl, []);
         $error = $expander->lastError();
         if ($error) {
