@@ -4,7 +4,7 @@
     "require-dev": {
         "phpunit/phpunit": "*",
         "phpunit/php-invoker": "*",
-        "satooshi/php-coveralls": "*"
+        "satooshi/php-coveralls": "dev-master@dev"
     },
     "license": "MIT",
     "authors": [
