@@ -261,7 +261,6 @@ class ExpanderTest extends PHPUnit_Framework_TestCase
             ['{&keys*}', $this->vars, '&semi=%3B&dot=.&comma=%2C'],
             ['/my%20list/{id}', $this->vars, '/my%20list/'],
             ['/你好/{who}', $this->vars, '/你好/fred'],
-            ['/你好/{who}', $this->vars, '/你好/fred'],
             ['/{oneping:4}', $this->vars, '/%D0%9E%D0%B4%D0%B8%D0%BD'],
             ['/Вы-говорите-на/{var}/русском?', $this->vars, '/Вы-говорите-на/value/русском?'],
             ['/{var%20}', ['var%20' => 'awesome'], '/awesome'],
