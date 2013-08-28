@@ -1,6 +1,6 @@
 # URI Template #
 
-[![Build Status](https://travis-ci.org/QuickenLoans/uri-template.png?branch=master)](https://travis-ci.org/QuickenLoans/uri-template) [![Coverage Status](https://coveralls.io/repos/QuickenLoans/uri-template/badge.png?branch=master)](https://coveralls.io/r/QuickenLoans/uri-template?branch=master)
+[![Build Status](https://travis-ci.org/QuickenLoans/uri-template.png?branch=master)](https://travis-ci.org/QuickenLoans/uri-template) [![Coverage Status](https://coveralls.io/repos/QuickenLoans/uri-template/badge.png?branch=master)](https://coveralls.io/r/QuickenLoans/uri-template?branch=master) [![Latest Stable Version](https://poser.pugx.org/ql/uri-template/v/stable.png)](https://packagist.org/packages/ql/uri-template)
 
 This is a full implementation of [RFC 6570](http://tools.ietf.org/html/rfc6570).
 
