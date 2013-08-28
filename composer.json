@@ -3,7 +3,8 @@
     "description": "An implementation of RFC 6570 level 4",
     "require-dev": {
         "phpunit/phpunit": "*",
-        "phpunit/php-invoker": "*"
+        "phpunit/php-invoker": "*",
+        "satooshi/php-coveralls": "*"
     },
     "license": "MIT",
     "authors": [
