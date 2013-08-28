@@ -1,2 +1,3 @@
 coverage_clover: build/clover.xml
-json_path: build/
+json_path: build/coveralls-upload.json
+src_dir: src
