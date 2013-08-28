@@ -1,5 +1,7 @@
 # URI Template #
 
+[![Build Status](https://travis-ci.org/QuickenLoans/uri-template.png?branch=master)](https://travis-ci.org/QuickenLoans/uri-template)
+
 This is a full implementation of [RFC 6570](http://tools.ietf.org/html/rfc6570).
 
 There are many other PHP implementations of RFC 6570 out there, but this one
