@@ -31,7 +31,7 @@ This is a minimal `composer.json` file that includes this package:
 ```javascript
 {
     "require": {
-        "ql/ql-uri-template": "1.*"
+        "ql/uri-template": "1.*"
     }
 }
 ```
