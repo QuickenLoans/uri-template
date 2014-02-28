@@ -11,7 +11,7 @@ namespace QL\UriTemplate;
  * The idea of this class is to provide a 'strict' wrapper around the Expander
  * class that does the real expansion work. It mainly will check if a given
  * string is a valid URI Template on construction so if you get an instance of
- * this class you can gaurentee the format of the template is valid.
+ * this class you can guarantee the format of the template is valid.
  *
  * @api
  */
