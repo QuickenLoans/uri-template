@@ -223,7 +223,7 @@ class Expander
                 if (self::$behavior[$op]['allow'] === 'U') {
                     $result .= rawurlencode($value);
                 } else {
-                    $result .= $this->encodeNonReservedCharaceters($value);
+                    $result .= $this->encodeNonReservedCharacters($value);
                 }
             } else if ($spec[1] !== '*') {
                 if (self::$behavior[$op]['named']) {
@@ -239,7 +239,7 @@ class Expander
                     if (self::$behavior[$op]['allow'] === 'U') {
                         $value = array_map('rawurlencode', $newval);
                     } else {
-                        $value = array_map([$this, 'encodeNonReservedCharaceters'], $newval);
+                        $value = array_map([$this, 'encodeNonReservedCharacters'], $newval);
                     }
                 }
                 $result .= implode(',', $value);
@@ -287,7 +287,7 @@ class Expander
                 if (self::$behavior[$op]['allow'] === 'U') {
                     $varvalue = array_map('rawurlencode', $varvalue);
                 } else {
-                    $varvalue = array_map([$this, 'encodeNonReservedCharaceters'], $varvalue);
+                    $varvalue = array_map([$this, 'encodeNonReservedCharacters'], $varvalue);
                 }
                 $result .= implode(self::$behavior[$op]['sep'], $varvalue);
             } else {
@@ -296,7 +296,7 @@ class Expander
                     if (self::$behavior[$op]['allow'] === 'U') {
                         $newvals[] .= rawurlencode($name) . '=' . rawurlencode($value);
                     } else {
-                        $newvals[] .= $this->encodeNonReservedCharaceters($name) . '=' . $this->encodeNonReservedCharaceters($value);
+                        $newvals[] .= $this->encodeNonReservedCharacters($name) . '=' . $this->encodeNonReservedCharacters($value);
                     }
                 }
                 $result .= implode(self::$behavior[$op]['sep'], $newvals);
@@ -337,7 +337,7 @@ class Expander
      * @param string $ipt
      * @return string
      */
-    private function encodeNonReservedCharaceters($ipt)
+    private function encodeNonReservedCharacters($ipt)
     {
         $result = '';
         $len = strlen($ipt);

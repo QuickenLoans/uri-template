@@ -1,6 +1,7 @@
 {
     "name": "ql/uri-template",
     "description": "An implementation of RFC 6570 level 4",
+    "keywords": ["uri", "template", "url", "rfc6570", "uri template"],
     "require-dev": {
         "phpunit/phpunit": "*",
         "phpunit/php-invoker": "*",
