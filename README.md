@@ -98,7 +98,7 @@ try {
 $expander('/foo/{bar}', ['bar' => new stdClass]);
 echo $expander->lastError() . "\n"; // "Objects without a __toString() method are not allowed as variable values."
 
-// error with variales in UriTemplate
+// error with variables in UriTemplate
 $tpl = new UriTemplate('/foo/{bar}');
 $tpl->expand(['bar' => STDIN]); // this will throw an exception with message "Resources are not allowed as variable values."
 ```
