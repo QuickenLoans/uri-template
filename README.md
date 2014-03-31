@@ -8,7 +8,7 @@ There are many other PHP implementations of RFC 6570 out there, but this one
 tries to go above and beyond with the following features:
 
 - Takes care to handle non-ascii character encoding issues properly.
-- Has 100% unit test code coverage
+- Has 100% unit test code coverage.
 - Unit tests not only the RFC examples of non-error scenarios but also failure
   situations covered by the text.
 - Does not use any regular expressions.
@@ -17,6 +17,7 @@ tries to go above and beyond with the following features:
 - This package also priovides a 'strict class' that will throw an exeption if
   the URI template uses invalid syntax in any way if your code wants to
   gaurentee the template before using it.
+- This package works with HHVM without issue.
 
 This particular implementation only allows URI templates in the UTF-8 character
 set.
@@ -104,6 +105,6 @@ $tpl->expand(['bar' => STDIN]); // this will throw an exception with message "Re
 
 ## Requirements ##
 
-This package requires PHP 5.4, the ctype extension and the mbstring extension.
+This package requires PHP 5.4+, the ctype extension and the mbstring extension.
 Additionally, it only allows for UTF-8 templates (though this could be changed
 in the future).
