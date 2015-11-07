@@ -188,8 +188,10 @@ class Expander
         }
 
         $isFirst = true;
+        $unusedVars = [];
         foreach ($varspecs as $spec) {
             if (!isset($variables[$spec[0]])) {
+                $unusedVars[] = $spec[0];
                 continue;
             }
             if (is_array($variables[$spec[0]]) && $variables[$spec[0]] === []) {
@@ -246,6 +248,18 @@ class Expander
             } else {
                 $result .= $this->expandExplodeMod($op, $spec[0], $value);
             }
+        }
+
+        // Need check to see if preserving unused is still enabled at this point.
+        if (count($unusedVars) > 0) {
+            $result .= "{";
+            if (strlen($result) > 0) {
+                $result .= self::$behavior[$op]['sep'];
+            } else {
+                $result .= self::$behavior[$op]['first'];
+            }
+            $result .= implode(',', $unusedVars);
+            $result .= "}";
         }
 
         return $result;
