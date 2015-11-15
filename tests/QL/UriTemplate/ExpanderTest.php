@@ -47,6 +47,17 @@ class ExpanderTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers QL\UriTemplate\Expander
+     * @dataProvider successfulExpansionsWithPreservation
+     */
+    public function testExpandSuccessfulWithPreservation($tpl, $vars, $expected)
+    {
+        $expander = new Expander;
+        $actual = $expander($tpl, $vars, ["preserveTpl" => true]);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @covers QL\UriTemplate\Expander
      * @dataProvider failedExpansions
      */
     public function testExpandFailure($tpl, $vars, $expected, $error)
@@ -119,6 +130,16 @@ class ExpanderTest extends PHPUnit_Framework_TestCase
             ['/path/{var:}', $this->vars, '/path/{var:}', 'Invalid expression at position 6: /path/{var:}'],
             ['/path/{var:14159}', $this->vars, '/path/{var:14159}', 'Invalid expression at position 6: /path/{var:14159}'],
             ['/some/{%3}', $this->vars, '/some/{%3}', 'Invalid operator at position 7: /some/{%3}'],
+        ];
+    }
+
+    public function successfulExpansionsWithPreservation()
+    {
+        return [
+            ['{/var,undef}', $this->vars, '/value{/undef}'],
+            ['{?var,undef,who}', $this->vars, '?var=value&who=fred{&undef}'],
+            ['{/var,x,undef}/here', $this->vars, '/value/1024{/undef}/here'],
+            ['X{.x,y,undef}', $this->vars, 'X.1024.768{.undef}'],
         ];
     }
 

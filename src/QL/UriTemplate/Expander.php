@@ -54,9 +54,11 @@ class Expander
     /**
      * @param string $tpl
      * @param array $variables
+     * @param array $options
+     *
      * @return string
      */
-    public function __invoke($tpl, array $variables)
+    public function __invoke($tpl, array $variables, array $options = [])
     {
         $this->error = null;
 
@@ -116,7 +118,7 @@ class Expander
                 if ($op) {
                     $expr = substr($expr, 1);
                 }
-                $expandResult = $this->expand($expr, $op, $variables);
+                $expandResult = $this->expand($expr, $op, $variables, $options);
                 if (false === $expandResult) {
                     $error = "Invalid expression at position $origPos: $tpl";
                     $result .= '{' . $expr . '}';
@@ -138,10 +140,12 @@ class Expander
      * @param string $expr The expression string minus the operator
      * @param string|null $op The operator (or null if no operator)
      * @param array $variables The varibles to expand with
+     * @param array $options
+     *
      * @return string|boolean Returns the expanded string or false if there was
      *    an error with the expansion format.
      */
-    private function expand($expr, $op, array $variables)
+    private function expand($expr, $op, array $variables, array $options = [])
     {
         $result = '';
         $varspecs = explode(',', $expr);
@@ -188,8 +192,10 @@ class Expander
         }
 
         $isFirst = true;
+        $unusedVars = [];
         foreach ($varspecs as $spec) {
             if (!isset($variables[$spec[0]])) {
+                $unusedVars[] = $spec[0];
                 continue;
             }
             if (is_array($variables[$spec[0]]) && $variables[$spec[0]] === []) {
@@ -246,6 +252,17 @@ class Expander
             } else {
                 $result .= $this->expandExplodeMod($op, $spec[0], $value);
             }
+        }
+
+        if (isset($options["preserveTpl"]) && $options["preserveTpl"] && count($unusedVars) > 0) {
+            $result .= "{";
+            if (strlen($result) > 0) {
+                $result .= self::$behavior[$op]['sep'];
+            } else {
+                $result .= self::$behavior[$op]['first'];
+            }
+            $result .= implode(',', $unusedVars);
+            $result .= "}";
         }
 
         return $result;
