@@ -26,8 +26,8 @@
         "ext-mbstring": "*"
     },
     "autoload": {
-        "psr-0": {
-            "QL\\UriTemplate": "src"
+        "psr-4": {
+            "QL\\UriTemplate\\": "src"
         }
     },
     "archive": {
