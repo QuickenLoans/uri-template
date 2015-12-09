@@ -105,6 +105,6 @@ $tpl->expand(['bar' => STDIN]); // this will throw an exception with message "Re
 
 ## Requirements ##
 
-This package requires PHP 5.4+, the ctype extension and the mbstring extension.
+This package requires PHP 5.5+, the ctype extension and the mbstring extension.
 Additionally, it only allows for UTF-8 templates (though this could be changed
 in the future).
