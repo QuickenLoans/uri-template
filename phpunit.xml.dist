@@ -30,7 +30,7 @@
 
   <testsuites>
     <testsuite name="URI Template Tests">
-      <directory>tests/QL</directory>
+      <directory>tests</directory>
     </testsuite>
   </testsuites>
 
