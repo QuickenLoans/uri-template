@@ -138,7 +138,9 @@ class ExpanderTest extends PHPUnit_Framework_TestCase
         return [
             ['{/var,undef}', $this->vars, '/value{/undef}'],
             ['{?var,undef,who}', $this->vars, '?var=value&who=fred{&undef}'],
+            ['/pages/{var}{?undef}', $this->vars, '/pages/value{?undef}'],
             ['{/var,x,undef}/here', $this->vars, '/value/1024{/undef}/here'],
+            ['X{.x,y,undef}', $this->vars, 'X.1024.768{.undef}'],
             ['X{.x,y,undef}', $this->vars, 'X.1024.768{.undef}'],
         ];
     }

@@ -256,7 +256,12 @@ class Expander
 
         if (isset($options["preserveTpl"]) && $options["preserveTpl"] && count($unusedVars) > 0) {
             $result .= "{";
-            $result .= self::$behavior[$op]['sep'];
+            if ($isFirst) {
+                $result .= self::$behavior[$op]['first'];
+                $isFirst = false;
+            } else {
+                $result .= self::$behavior[$op]['sep'];
+            }
             $result .= implode(',', $unusedVars);
             $result .= "}";
         }
