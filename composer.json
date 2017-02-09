@@ -3,7 +3,7 @@
     "description": "An implementation of RFC 6570 level 4",
     "keywords": ["uri", "template", "url", "rfc6570", "uri template"],
     "require-dev": {
-        "phpunit/phpunit": "<5.0.0",
+        "phpunit/phpunit": "^5.7",
         "phpunit/php-invoker": "*",
         "satooshi/php-coveralls": "dev-master@dev"
     },
