@@ -29,7 +29,7 @@ name in your require section in the `composer.json` file and you'll be all set.
 
 This is a minimal `composer.json` file that includes this package:
 
-```javascript
+```json
 {
     "require": {
         "ql/uri-template": "1.*"
@@ -71,6 +71,8 @@ $url = $exp($tpl, ['username' => 'mnagi', 'password' => 'hunter2' ]);
 echo $url; // outputs "/authenticate/mnagi?password=hunter2"
 ```
 
+### Handling Errors
+
 The difference between the two (other than how they are invoked) is when there
 are errors of some kind:
 
@@ -103,8 +105,36 @@ $tpl = new UriTemplate('/foo/{bar}');
 $tpl->expand(['bar' => STDIN]); // this will throw an exception with message "Resources are not allowed as variable values."
 ```
 
+### Options
+
+The `Expander` class's invoke method allows an array of options to be passed in
+to it. Right now the only option available is the ability to preserve template
+variables if the calling code hasn't passed all of them in.
+
+Take the following URI Template and set of variables:
+
+```text
+Template:  /events{?product,date,days,seats,before,at,after}
+Variables: { "product": 10, "days": 20 }
+
+"preserveTpl" set to false: /events?product=10&days=20
+"preserveTpl" set to true:  /events?product=10&days=20{&date,seats,before,at,after}
+```
+
+A full code example of turning `preserveTpl` on:
+
+```php
+use QL\UriTemplate\Expander;
+
+$tpl = '/events{?product,date,days,seats,before,at,after}';
+$vars = ['product' => 10, 'days' => 20];
+$expander = new Expander;
+$result = $expander($tpl, $vars, ['preserveTpl' => true]);
+echo $result . "\n";
+```
+
 ## Requirements ##
 
-This package requires PHP 5.5+, the ctype extension and the mbstring extension.
-Additionally, it only allows for UTF-8 templates (though this could be changed
-in the future).
+This package requires PHP 5.6+ (though it will likely work in 5.5), the ctype 
+extension and the mbstring extension. Additionally, it only allows for UTF-8
+templates (though this could be changed in the future).
