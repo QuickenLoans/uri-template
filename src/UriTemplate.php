@@ -52,7 +52,7 @@ class UriTemplate
      * @throws Exception
      * @return string
      */
-    public function expand(array $variables)
+    public function expand(array $variables = [])
     {
         $result = call_user_func($this->expander, $this->tpl, $variables);
 

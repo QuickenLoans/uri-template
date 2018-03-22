@@ -49,4 +49,16 @@ class UriTemplateTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame('/foo/bar', $actual);
     }
+
+    /**
+     * @covers QL\UriTemplate\UriTemplate
+     */
+    public function testGoodExpansionOnNoParameterUriTemplate()
+    {
+        $expander = new Expander;
+        $tpl = new UriTemplate('/foo/bar', $expander);
+        $actual = $tpl->expand();
+
+        $this->assertSame('/foo/bar', $actual);
+    }
 }
