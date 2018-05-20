@@ -5,10 +5,10 @@
 
 namespace QL\UriTemplate;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class UriTemplateTest extends PHPUnit_Framework_TestCase
+class UriTemplateTest extends TestCase
 {
     /**
      * @covers QL\UriTemplate\UriTemplate
