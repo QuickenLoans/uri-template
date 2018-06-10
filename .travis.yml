@@ -17,6 +17,6 @@ matrix:
     - php: 5.3
 install:
   - composer -n --prefer-source install
-  - if [[ $HHVM == true ]]; then composer require "phpunit/phpunit:5.7"; fi
+  - if [[ $HHVM == true ]]; then composer require "sebastian/exporter:2.0" "phpunit/phpunit:5.7"; fi
 script: vendor/bin/phpunit
 after_success: vendor/bin/php-coveralls
