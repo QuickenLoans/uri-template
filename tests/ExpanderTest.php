@@ -5,10 +5,10 @@
 
 namespace QL\UriTemplate;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class ExpanderTest extends PHPUnit_Framework_TestCase
+class ExpanderTest extends TestCase
 {
     private $vars = [
         'var' => 'value',
