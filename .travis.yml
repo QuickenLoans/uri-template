@@ -1,8 +1,6 @@
 language: php
 matrix:
   include:
-    - php: 5.3
-      dist: precise
     - php: 5.4
     - php: 5.5
     - php: 5.6
@@ -14,7 +12,6 @@ matrix:
   allow_failures:
     - php: nightly
     - php: hhvm
-    - php: 5.3
 install:
   - composer -n --prefer-source install
   - if [[ $HHVM == true ]]; then composer require "sebastian/exporter:2.0" "phpunit/phpunit:5.7"; fi
