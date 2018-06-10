@@ -7,13 +7,9 @@ matrix:
     - php: 7.0
     - php: 7.1
     - php: 7.2
-    - php: hhvm
-      env: HHVM=true
+    - php: nightly
   allow_failures:
     - php: nightly
-    - php: hhvm
-install:
-  - composer -n --prefer-source install
-  - if [[ $HHVM == true ]]; then composer require "sebastian/exporter:2.0" "phpunit/phpunit:5.7"; fi
+install: composer -n --prefer-source install
 script: vendor/bin/phpunit
 after_success: vendor/bin/php-coveralls
