@@ -35,7 +35,7 @@ class ExpanderTest extends TestCase
     ];
 
     /**
-     * @covers QL\UriTemplate\Expander
+     * @covers \QL\UriTemplate\Expander
      * @dataProvider successfulExpansions
      */
     public function testExpandSuccessful($tpl, $vars, $expected)
@@ -46,7 +46,7 @@ class ExpanderTest extends TestCase
     }
 
     /**
-     * @covers QL\UriTemplate\Expander
+     * @covers \QL\UriTemplate\Expander
      * @dataProvider successfulExpansionsWithPreservation
      */
     public function testExpandSuccessfulWithPreservation($tpl, $vars, $expected)
@@ -57,7 +57,7 @@ class ExpanderTest extends TestCase
     }
 
     /**
-     * @covers QL\UriTemplate\Expander
+     * @covers \QL\UriTemplate\Expander
      * @dataProvider failedExpansions
      */
     public function testExpandFailure($tpl, $vars, $expected, $error)
@@ -69,7 +69,7 @@ class ExpanderTest extends TestCase
     }
 
     /**
-     * @covers QL\UriTemplate\Expander
+     * @covers \QL\UriTemplate\Expander
      * @dataProvider failedVars
      */
     public function testInputVarsBadFormat($tpl, $vars, $expected, $error)

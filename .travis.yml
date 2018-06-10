@@ -1,16 +1,22 @@
 language: php
-php:
-  - nightly
-  - hhvm
-  - 7.2
-  - 7.1
-  - 7.0
-  - 5.6
-  - 5.5
 matrix:
+  include:
+    - php: 5.3
+      dist: precise
+    - php: 5.4
+    - php: 5.5
+    - php: 5.6
+    - php: 7.0
+    - php: 7.1
+    - php: 7.2
+    - php: hhvm
+      env: HHVM=true
   allow_failures:
     - php: nightly
     - php: hhvm
-before_script: composer -n --prefer-source install
+    - php: 5.3
+install:
+  - composer -n --prefer-source install
+  - if [[ $HHVM == true ]]; then composer require "phpunit/phpunit:5.7"; fi
 script: vendor/bin/phpunit
 after_success: vendor/bin/php-coveralls
